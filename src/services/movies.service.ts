@@ -84,7 +84,7 @@ interface IMovieResponseRating {
   Value: string;
 }
 
-interface IMovieResponse extends IMovieResposeProps {
+export interface IMovieResponse extends IMovieResposeProps {
   Actors: string;
   Awards: string;
   BoxOffice: string;
@@ -155,7 +155,13 @@ const movieService = {
   searchById: async (id: string) => {
     try {
       const resultById: IMovieResponse = await http.get(API.SEARCH_BY_ID(id));
-      console.log(resultById);
+      if (resultById?.Error) {
+        console.log(resultById.Error);
+        return null;
+      } else {
+        const result: IMovieResponse = resultById;
+        return result;
+      }
     } catch (e) {
       console.log(e);
     }

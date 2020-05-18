@@ -12,7 +12,7 @@ const App = () => {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route path="/movie" component={Movie} />
+          <Route path="/movie/:id" component={Movie} />
           <Route path="/search" component={SearchMovie} />
           <Route path="/" component={Home} />
         </Switch>
