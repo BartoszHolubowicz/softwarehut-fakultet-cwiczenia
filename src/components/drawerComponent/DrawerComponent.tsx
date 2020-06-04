@@ -28,6 +28,7 @@ const DrawerComponent: React.FC<IDrawerComponentProps> = ({ shouldBeOpen }) => {
                     <ul>
                         <li>{redirectTo('/', 'Home')}</li>
                         <li>{redirectTo('/movie', 'Movie')}</li>
+                        <li>{redirectTo('/watchlist', 'My Watchlist')}</li>
                         <li>{redirectTo('/search', 'Search Movie')}</li>
                     </ul>
                 </div>

@@ -2,7 +2,7 @@ import { Reducer } from 'redux';
 import { Actions, TodoStoreActions } from '../actions/todos.actions';
 
 export interface ITodo {
-  id: number;
+  id: string;
   label: string;
   done: boolean;
   description: string;
@@ -15,7 +15,7 @@ export interface ITodosListStoreState {
 export const todosListInitialState: ITodosListStoreState = {
   list: [
     {
-      id: -1,
+      id: '-1',
       description: '',
       done: false,
       label: ''
@@ -25,8 +25,9 @@ export const todosListInitialState: ITodosListStoreState = {
 
 
 export const todosStoreReducer: Reducer<ITodosListStoreState, Actions> = (state: ITodosListStoreState = todosListInitialState, actions: Actions) => {
+  console.log(state);
   switch (actions.type) {
-    case TodoStoreActions.SET_NEW_TODO :
+    case TodoStoreActions.SET_NEW_TODO:
       return {
         ...state,
         list: [...state.list, actions.payload.todo]
@@ -46,6 +47,16 @@ export const todosStoreReducer: Reducer<ITodosListStoreState, Actions> = (state:
         };
       }
       return state;
+    case TodoStoreActions.TOGGLE_TODO_COMPLETION:
+        const todoToFind = state.list.find(el => el.id === actions.payload.id);
+        if (todoToFind) {
+          todoToFind.done = !todoToFind.done;
+          return {
+            ...state,
+            list: [...state.list.filter(el => el.id !== actions.payload.id), todoToFind],
+          };
+        }
+        return state;
     default:
       return state;
   }

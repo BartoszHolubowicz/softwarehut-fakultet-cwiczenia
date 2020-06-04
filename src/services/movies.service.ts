@@ -111,6 +111,10 @@ export interface IMovieResponse extends IMovieResposeProps {
   imdbVotes: string;
 }
 
+export interface IWatchlistMovie extends IMovieResponse {
+  watched: boolean;
+}
+
 interface IMovieProps {
   production: string;
   plot: string;
@@ -156,7 +160,7 @@ const movieService = {
     try {
       const resultById: IMovieResponse = await http.get(API.SEARCH_BY_ID(id));
       if (resultById?.Error) {
-        console.log(resultById.Error);
+        console.log(resultById.Error, id);
         return null;
       } else {
         const result: IMovieResponse = resultById;

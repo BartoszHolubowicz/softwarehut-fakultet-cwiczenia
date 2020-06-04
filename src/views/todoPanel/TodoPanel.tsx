@@ -14,7 +14,7 @@ const TodoPanel = () => {
       done: false,
       label: 'nowe todo',
       description: 'opis todo',
-      id: 1
+      id: '1'
     });
   }, []);
 

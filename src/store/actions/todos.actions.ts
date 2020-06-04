@@ -2,6 +2,8 @@ import { ITodo } from '../reducers/todos.reducer';
 
 export enum TodoStoreActions {
   SET_TODO_DONE = 'SET_TODO_DONE',
+  SET_TODO_UNDONE = 'SET_TODO_UNDONE',
+  TOGGLE_TODO_COMPLETION = 'TOGGLE_TODO_COMPLETION',
   SET_NEW_TODO = 'SET_NEW_TODO',
   SET_DELETE_TODO = 'SET_DELETE_TODO',
 }
@@ -10,7 +12,14 @@ export enum TodoStoreActions {
 export interface ISetTodoDone {
   type: TodoStoreActions.SET_TODO_DONE,
   payload: {
-    id: number,
+    id: string,
+  }
+}
+
+export interface IToggleTodoCompletion {
+  type: TodoStoreActions.TOGGLE_TODO_COMPLETION,
+  payload: {
+    id: string,
   }
 }
 
@@ -35,8 +44,14 @@ export const todosActions = {
       todo
     }
   }),
-  setTodoDone: (id: number) => ({
+  setTodoDone: (id: string) => ({
     type: TodoStoreActions.SET_TODO_DONE,
+    payload: {
+      id
+    }
+  }),
+  toggleTodoCompletion: (id: string) => ({
+    type: TodoStoreActions.TOGGLE_TODO_COMPLETION,
     payload: {
       id
     }
@@ -50,4 +65,4 @@ export const todosActions = {
 };
 
 
-export type Actions = ISetTodoDone & ISetNewTodo & ISetDeleteTodo;
+export type Actions = ISetTodoDone & ISetNewTodo & IToggleTodoCompletion & ISetDeleteTodo;

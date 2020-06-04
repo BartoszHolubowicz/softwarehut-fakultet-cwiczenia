@@ -5,7 +5,7 @@ import { todosActions } from '../store/actions/todos.actions';
 export class TodoService {
 
   setNewTodo(todo: ITodo) {
-   store.dispatch(todosActions.setNewTodo(todo));
+    store.dispatch(todosActions.setNewTodo(todo));
   }
 
   deleteTodo(todo: ITodo) {
@@ -16,4 +16,7 @@ export class TodoService {
     store.dispatch(todosActions.setTodoDone(todo.id));
   }
 
+  toggleTodoCompletion(todo: ITodo) {
+    store.dispatch(todosActions.toggleTodoCompletion(todo.id));
+  }
 }
